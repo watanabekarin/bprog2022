@@ -448,3 +448,319 @@ Ok, one module loaded.
 2022-06-16 16:14:59.306030868
 >>> :q
 Leaving GHCi.
+GHCi, version 9.0.2: https://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /home/karin/bprog2022/.ghci
+2022-06-23 14:54:26.999077572
+>>> :i Nam
+
+<interactive>:1:1: error: Not in scope: ‘Nam’
+2022-06-23 14:56:16.394208999
+>>> :i Num
+type Num :: * -> Constraint
+class Num a where
+  (+) :: a -> a -> a
+  (-) :: a -> a -> a
+  (*) :: a -> a -> a
+  negate :: a -> a
+  abs :: a -> a
+  signum :: a -> a
+  fromInteger :: Integer -> a
+  {-# MINIMAL (+), (*), abs, signum, fromInteger, (negate | (-)) #-}
+  	-- Defined in ‘GHC.Num’
+instance Num NominalDiffTime
+  -- Defined in ‘time-1.9.3:Data.Time.Clock.Internal.NominalDiffTime’
+instance Num DiffTime
+  -- Defined in ‘time-1.9.3:Data.Time.Clock.Internal.DiffTime’
+instance Num Word -- Defined in ‘GHC.Num’
+instance Num Integer -- Defined in ‘GHC.Num’
+instance Num Int -- Defined in ‘GHC.Num’
+instance Num Float -- Defined in ‘GHC.Float’
+instance Num Double -- Defined in ‘GHC.Float’
+2022-06-23 14:56:37.745583404
+>>> GHCi, version 9.0.2: https://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /home/karin/bprog2022/.ghci
+2022-06-23 15:07:45.408823381
+>>> :i Num
+type Num :: * -> Constraint
+class Num a where
+  (+) :: a -> a -> a
+  (-) :: a -> a -> a
+  (*) :: a -> a -> a
+  negate :: a -> a
+  abs :: a -> a
+  signum :: a -> a
+  fromInteger :: Integer -> a
+  {-# MINIMAL (+), (*), abs, signum, fromInteger, (negate | (-)) #-}
+  	-- Defined in ‘GHC.Num’
+instance Num NominalDiffTime
+  -- Defined in ‘time-1.9.3:Data.Time.Clock.Internal.NominalDiffTime’
+instance Num DiffTime
+  -- Defined in ‘time-1.9.3:Data.Time.Clock.Internal.DiffTime’
+instance Num Word -- Defined in ‘GHC.Num’
+instance Num Integer -- Defined in ‘GHC.Num’
+instance Num Int -- Defined in ‘GHC.Num’
+instance Num Float -- Defined in ‘GHC.Float’
+instance Num Double -- Defined in ‘GHC.Float’
+2022-06-23 15:08:00.55320837
+>>> 1 == 2
+False
+2022-06-23 15:08:11.063614541
+>>> 'a' < 'b'
+True
+2022-06-23 15:11:22.289415684
+>>> 'ab' < 'b'
+
+<interactive>:4:1: error:
+    • Syntax error on 'ab'
+      Perhaps you intended to use TemplateHaskell or TemplateHaskellQuotes
+    • In the Template Haskell quotation 'ab'
+2022-06-23 15:12:52.479979175
+>>> 1 /= 1
+False
+2022-06-23 15:15:42.681761729
+>>> :info abs
+type Num :: * -> Constraint
+class Num a where
+  ...
+  abs :: a -> a
+  ...
+  	-- Defined in ‘GHC.Num’
+2022-06-23 15:30:25.907736718
+>>> abs
+
+<interactive>:7:1: error:
+    • No instance for (Show (Integer -> Integer))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+2022-06-23 15:30:32.571476457
+>>> abs (-234)
+234
+2022-06-23 15:34:29.357908226
+>>> GHCi, version 9.0.2: https://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /home/karin/bprog2022/.ghci
+2022-06-30 14:56:04.367452342
+>>> GHCi, version 9.0.2: https://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /home/karin/bprog2022/.ghci
+2022-06-30 14:56:43.709205969
+>>> [ x ^ 2 | x <- [1 .. 5] ]
+[1,4,9,16,25]
+2022-06-30 15:01:38.542653123
+>>> map (^2) [1..5]
+[1,4,9,16,25]
+2022-06-30 15:04:29.010250788
+>>> [ x * 2 | x <- [1 .. 5] ]
+[2,4,6,8,10]
+2022-06-30 15:12:02.999573435
+>>> [ x 'div' 2 | x <- [1 ..5] ]
+
+<interactive>:4:5: error:
+    • Syntax error on 'div'
+      Perhaps you intended to use TemplateHaskell or TemplateHaskellQuotes
+    • In the Template Haskell quotation 'div'
+2022-06-30 15:13:27.053228301
+>>>  [ x 'div' 2 | x <- [1 .. 5] ]
+
+<interactive>:5:6: error:
+    • Syntax error on 'div'
+      Perhaps you intended to use TemplateHaskell or TemplateHaskellQuotes
+    • In the Template Haskell quotation 'div'
+2022-06-30 15:14:10.499074464
+>>> [ x `div` 2 | x <- [1 .. 5] ]
+[0,1,1,2,2]
+2022-06-30 15:14:59.87962117
+>>> [ x `divMod` 2 | x <- [1 .. 5] ]
+[(0,1),(1,0),(1,1),(2,0),(2,1)]
+2022-06-30 15:15:39.029170067
+>>> [ (x, y) | x <- "abc" , y <- [4,5] ]
+[('a',4),('a',5),('b',4),('b',5),('c',4),('c',5)]
+2022-06-30 15:20:50.681963833
+>>>  [ (x, y) | y <- "abc" , x <- [4,5] ]
+[(4,'a'),(5,'a'),(4,'b'),(5,'b'),(4,'c'),(5,'c')]
+2022-06-30 15:21:28.267803162
+>>>  [ (x, y) | x <- [4,5] , y <- "abc" ] ]
+
+<interactive>:10:39: error: parse error on input ‘]’
+2022-06-30 15:23:47.03865558
+>>> [ (x, y) | x <- [4,5], y <- "abc" ] ]
+
+<interactive>:11:37: error: parse error on input ‘]’
+2022-06-30 15:24:42.251958459
+>>> myconcat [[1,2,3],[4,5],[6,7,8,9]]
+
+<interactive>:12:1: error:
+    • Variable not in scope: myconcat :: [[a0]] -> t
+    • Perhaps you meant one of these:
+        ‘mconcat’ (imported from Prelude), ‘concat’ (imported from Prelude)
+2022-06-30 15:28:39.043578211
+>>> :e src/First where
+catn: src/First: openFile: does not exist (No such file or directory)
+2022-06-30 15:29:25.197036178
+>>> :l src/First where
+target ‘where’ is not a module name or a source file
+2022-06-30 15:29:25.263334203
+>>> :e src/First.hs
+   1  module First where
+   2  
+   3  double :: Int -> Int
+   4  double x = x + x
+   5  
+   6  quadruple :: Int -> Int
+   7  quadruple x = double (double x)
+   8  
+   9  factorial :: Integer -> Integer
+  10  factorial n = product [1 .. n]
+  11  
+  12  average :: [Int] -> Int
+  13  average xs = sum xs `div` length xs
+  14  
+  15  ave :: [Int] -> Int
+  16  ave xs = div (sum xs) (length xs)
+  17  
+  18  myinit :: [a] -> [a]
+  19  myinit (x:[]) = []
+  20  myinit (x:xs) = x : (init xs)n  
+  21  
+  22  myconcat :: [[a]] -> [a]
+  23  myconcat xss = [ x | xs <- xss, x <- xs]
+Ok, no modules loaded.
+2022-06-30 15:30:37.007250787
+>>> :l src/First.hs
+[1 of 1] Compiling First            ( src/First.hs, interpreted )
+
+src/First.hs:20:30: error: Variable not in scope: n
+   |
+20 | myinit (x:xs) = x : (init xs)n  
+   |                              ^
+Failed, no modules loaded.
+2022-06-30 15:30:37.101611634
+>>> myconcat [[1,2,3],[4,5],[6,7,8,9]]
+
+<interactive>:17:1: error:
+    • Variable not in scope: myconcat :: [[a0]] -> t
+    • Perhaps you meant one of these:
+        ‘mconcat’ (imported from Prelude), ‘concat’ (imported from Prelude)
+2022-06-30 15:31:25.729320022
+>>> :e src/First.hs
+   1  module First where
+   2  
+   3  double :: Int -> Int
+   4  double x = x + x
+   5  
+   6  quadruple :: Int -> Int
+   7  quadruple x = double (double x)
+   8  
+   9  factorial :: Integer -> Integer
+  10  factorial n = product [1 .. n]
+  11  
+  12  average :: [Int] -> Int
+  13  average xs = sum xs `div` length xs
+  14  
+  15  ave :: [Int] -> Int
+  16  ave xs = div (sum xs) (length xs)
+  17  
+  18  myinit :: [a] -> [a]
+  19  myinit (x:[]) = []
+  20  myinit (x:xs) = x : (init xs)n  
+  21  
+  22  myconcat :: [[a]] -> [a]
+  23  myconcat xss = [ x | xs <- xss, x <- xs]
+[1 of 1] Compiling First            ( src/First.hs, interpreted )
+
+src/First.hs:20:30: error: Variable not in scope: n
+   |
+20 | myinit (x:xs) = x : (init xs)n  
+   |                              ^
+Failed, no modules loaded.
+2022-06-30 15:33:03.79701576
+>>> :l src/First.hs
+[1 of 1] Compiling First            ( src/First.hs, interpreted )
+
+src/First.hs:20:30: error: Variable not in scope: n
+   |
+20 | myinit (x:xs) = x : (init xs)n  
+   |                              ^
+Failed, no modules loaded.
+2022-06-30 15:33:03.895206521
+>>> :e
+   1  module First where
+   2  
+   3  double :: Int -> Int
+   4  double x = x + x
+   5  
+   6  quadruple :: Int -> Int
+   7  quadruple x = double (double x)
+   8  
+   9  factorial :: Integer -> Integer
+  10  factorial n = product [1 .. n]
+  11  
+  12  average :: [Int] -> Int
+  13  average xs = sum xs `div` length xs
+  14  
+  15  ave :: [Int] -> Int
+  16  ave xs = div (sum xs) (length xs)
+  17  
+  18  myinit :: [a] -> [a]
+  19  myinit (x:[]) = []
+  20  myinit (x:xs) = x : (init xs) 
+  21  
+  22  myconcat :: [[a]] -> [a]
+  23  myconcat xss = [ x | xs <- xss, x <- xs]
+[1 of 1] Compiling First            ( src/First.hs, interpreted )
+Ok, one module loaded.
+2022-06-30 15:36:47.991703877
+>>> myconcat [[1,2,3],[4,5],[6,7,8,9]]
+[1,2,3,4,5,6,7,8,9]
+2022-06-30 15:37:09.062408967
+>>> [ 1 | _ <- [1 .. 5] ]
+[1,1,1,1,1]
+2022-06-30 15:47:30.742790873
+>>> mylength [`a` .. `z`]
+
+<interactive>:23:15: error: parse error on input ‘..’
+2022-06-30 15:51:08.165490407
+>>> mylength ['a' .. 'z']
+
+<interactive>:24:1: error:
+    • Variable not in scope: mylength :: [Char] -> t
+    • Perhaps you meant ‘length’ (imported from Prelude)
+2022-06-30 15:52:26.129827779
+>>> :e src/First.hs
+   1  module First where
+   2  
+   3  double :: Int -> Int
+   4  double x = x + x
+   5  
+   6  quadruple :: Int -> Int
+   7  quadruple x = double (double x)
+   8  
+   9  factorial :: Integer -> Integer
+  10  factorial n = product [1 .. n]
+  11  
+  12  average :: [Int] -> Int
+  13  average xs = sum xs `div` length xs
+  14  
+  15  ave :: [Int] -> Int
+  16  ave xs = div (sum xs) (length xs)
+  17  
+  18  myinit :: [a] -> [a]
+  19  myinit (x:[]) = []
+  20  myinit (x:xs) = x : (init xs) 
+  21  
+  22  myconcat :: [[a]] -> [a]
+  23  myconcat xss = [ x | xs <- xss, x <- xs ]
+  24  
+  25  mylength :: [a] -> Int
+  26  mylength xs = sum [ 1 | _ <- xs ]
+[1 of 1] Compiling First            ( src/First.hs, interpreted )
+Ok, one module loaded.
+2022-06-30 15:54:43.872996665
+>>> :l src/First.hs
+[1 of 1] Compiling First            ( src/First.hs, interpreted )
+Ok, one module loaded.
+2022-06-30 15:54:43.972449578
+>>>  mylength ['a' .. 'z']
+26
+2022-06-30 15:55:11.666617779
+>>> :q
+Leaving GHCi.

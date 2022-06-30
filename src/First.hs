@@ -17,4 +17,10 @@ ave xs = div (sum xs) (length xs)
 
 myinit :: [a] -> [a]
 myinit (x:[]) = []
-myinit (x:xs) = x : (init xs)
+myinit (x:xs) = x : (init xs) 
+
+myconcat :: [[a]] -> [a]
+myconcat xss = [ x | xs <- xss, x <- xs ]
+
+mylength :: [a] -> Int
+mylength xs = sum [ 1 | _ <- xs ]
