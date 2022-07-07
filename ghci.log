@@ -764,3 +764,31 @@ Ok, one module loaded.
 2022-06-30 15:55:11.666617779
 >>> :q
 Leaving GHCi.
+GHCi, version 9.0.2: https://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /home/karin/bprog2022/.ghci
+2022-07-07 16:04:38.325860008
+>>> :e src/Caesar.hs
+   1  module Caesar where
+   2  
+   3  import Data.Char
+Ok, no modules loaded.
+2022-07-07 16:05:04.47915814
+>>> :l src/Caesar.hs
+[1 of 1] Compiling Caesar           ( src/Caesar.hs, interpreted )
+Ok, one module loaded.
+2022-07-07 16:05:04.561180592
+>>> old 'A'
+
+<interactive>:3:1: error:
+    • Variable not in scope: old :: Char -> t
+    • Perhaps you meant one of these:
+        ‘ord’ (imported from Data.Char), ‘odd’ (imported from Prelude)
+2022-07-07 16:05:25.575740829
+>>> ord 'A'
+65
+2022-07-07 16:05:54.634014759
+>>> ord 'a'
+97
+2022-07-07 16:06:08.370895736
+>>> :q
+Leaving GHCi.
